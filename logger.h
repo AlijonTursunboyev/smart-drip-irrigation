@@ -2,6 +2,7 @@
 #define LOGGER_H
 
 #include "sensors.h"
+#include "config.h"   // include config separately
 #include <string>
 
 void initLogger();

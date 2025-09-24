@@ -6,7 +6,7 @@
 #include <sstream>
 #include <ctime>
 #include <iostream>
-
+using namespace std;
 static std::ofstream g_csv;
 
 void writeCsvHeader(std::ofstream &f) {
@@ -16,7 +16,7 @@ void writeCsvHeader(std::ofstream &f) {
 void initLogger() {
     bool exists = false;
     // simplistic check: try to open for read
-    std::ifstream in(config::LOG_CSV_FILE); // but we don't have namespace config - I'll just open directly below
+    std::ifstream in(LOG_CSV_FILE); // but we don't have namespace config - I'll just open directly below
     if (in.good()) exists = true;
     in.close();
 

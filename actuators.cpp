@@ -1,6 +1,7 @@
 #include "actuators.h"
 #include <iostream>
 #include <chrono>
+#include<config.h>
 using namespace std;
 
 static bool pump_state = false;
@@ -26,6 +27,19 @@ void pumpOff() {
 
 bool isPumpRunning() {
     return pump_state;
+}
+
+void checkPumpSafety() {
+    if (pump_state) {
+        auto run_seconds = chrono::duration_cast<chrono::seconds>(
+            chrono::steady_clock::now() - pump_start_time
+        ).count();
+
+        if (run_seconds > PUMP_MAX_RUNTIME_SECONDS) {
+            pumpOff();
+            cout << "[SAFETY] Pump stopped after exceeding max runtime!" << endl;
+        }
+    }
 }
 
 chrono::steady_clock::duration pumpRunDuration() {

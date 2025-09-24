@@ -14,12 +14,18 @@ bool isWithinIrrigationWindow() {
     localtime_r(&t, &local_tm);
 #endif
 
-    int hour = local_tm.tm_hour;
-    // If start <= end (normal, e.g., 7-8)
-    if (IRRIGATION_START_HOUR <= IRRIGATION_END_HOUR) {
-        return (hour >= IRRIGATION_START_HOUR) && (hour < IRRIGATION_END_HOUR);
+    int minutes = local_tm.tm_hour * 60 + local_tm.tm_min;
+
+    // If you want finer control, update config.h with start/end minutes.
+    // For now, IRRIGATION_START_HOUR and IRRIGATION_END_HOUR are in hours only.
+    int startMinutes = IRRIGATION_START_HOUR * 60;
+    int endMinutes   = IRRIGATION_END_HOUR * 60;
+
+    if (startMinutes <= endMinutes) {
+        // Normal case (e.g. 07:00 - 08:00)
+        return (minutes >= startMinutes) && (minutes < endMinutes);
     } else {
-        // wrap-around midnight (e.g., 23 - 2)
-        return (hour >= IRRIGATION_START_HOUR) || (hour < IRRIGATION_END_HOUR);
+        // Wrap around midnight (e.g. 23:00 - 02:00)
+        return (minutes >= startMinutes) || (minutes < endMinutes);
     }
 }

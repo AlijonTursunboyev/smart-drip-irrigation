@@ -6,6 +6,7 @@
 
 void pumpOn();
 void pumpOff();
+void checkPumpSafety();
 bool isPumpRunning();
 std::chrono::steady_clock::duration pumpRunDuration();
 
