@@ -2,11 +2,12 @@
 #include <iostream>
 using namespace std;
 
-void pumpOn() {
+void pumpOn()
+{
     cout << "Pump ON 💧" << endl;
 }
 
-void pumpOff() {
+void pumpOff()
+{
     cout << "Pump OFF ❌" << endl;
 }
-
