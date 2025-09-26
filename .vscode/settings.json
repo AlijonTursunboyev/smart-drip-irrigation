@@ -58,3 +58,6 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "C_Cpp.default.compilerPath": "C:/mingw-w64-v11.0.0/bin/g++.exe"
 }
+{
+  "C_Cpp.errorSquiggles": "disabled"
+}
